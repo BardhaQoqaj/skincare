@@ -1,0 +1,25 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const slides = document.querySelectorAll(".slide");
+    const interval = 4000; // Interval in milliseconds (4 seconds)
+  
+    let slideIndex = 0;
+    showSlide(slideIndex);
+  
+    function showSlide(index) {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[index].style.display = "block";
+    }
+  
+    function slideNext() {
+      slideIndex++;
+      if (slideIndex >= slides.length) {
+        slideIndex = 0;
+      }
+      showSlide(slideIndex);
+    }
+  
+    setInterval(slideNext, interval);
+  });
+  
