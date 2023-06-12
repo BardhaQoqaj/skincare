@@ -219,8 +219,11 @@ section{
     border-style: none;
     vertical-align: top;
     overflow: hidden;
+    transition: transform 0.3s ease;
   }
-  
+  ul li img:hover {
+    transform: rotate(360deg);
+  }
 
 /* footer */
 .footer {
