@@ -184,9 +184,43 @@ section{
     background-color: #9e9999;
   }
   
-
-
-
+  .Quality {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .Quality p {
+    font-size: 3.2em;
+  }
+  
+  .Quality a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .Quality a:hover {
+    text-decoration: underline;
+  }
+  
+  ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin: 5px;
+  }
+  
+  ul li img {
+    max-width: 100%;
+    height: auto;
+    border-style: none;
+    vertical-align: top;
+    overflow: hidden;
+  }
+  
 
 /* footer */
 .footer {
