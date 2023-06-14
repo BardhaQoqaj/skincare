@@ -29,5 +29,21 @@ document.addEventListener("DOMContentLoaded", function() {
       $(this).next('.dropdown-menu').slideToggle('fast');
     });
   });
+
+  const thumbnails = document.querySelectorAll('.thumbnail');
+
+thumbnails.forEach((thumbnail) => {
+  const video = thumbnail.querySelector('.video');
+
+  thumbnail.addEventListener('mouseenter', () => {
+    video.play();
+  });
+
+  thumbnail.addEventListener('mouseleave', () => {
+    video.pause();
+    video.currentTime = 0;
+  });
+});
+
   
   
