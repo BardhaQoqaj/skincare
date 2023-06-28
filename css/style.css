@@ -3,8 +3,8 @@
 :root{
 
     --main-color:#d7c7ae;
-    --primary-color: #8a6d46;
-    --hover: #5a4d3e;
+    --primary-color: #503f29b7;
+    --hover: #88735b;
     --black:#2a201c;
     --white:#fff;
     --light-bg:#f3efec;
@@ -352,6 +352,244 @@ section{
   }
   
   
+  /* Slider  SERVICES */
+.sliderS {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.slideS {
+  flex: 0 0 100%;
+  padding: 0 10px;
+  text-align: center;
+}
+
+/* Stars Animation 
+.stars-animation {
+  width: 200px;
+  height: 40px;
+  background-color: #f5f5f5;
+  position: relative;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 40px;
+  background: url(path_to_star_image) no-repeat;
+  animation: starAnimation 1s infinite;
+}*/
+
+/* style per services */
+
+
+
+.services .heading {
+  margin-bottom: 30px;
+  margin-top: 50px;
+
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 130px;
+
+
+}
+
+.service {
+  flex-basis: calc(33.33% - 20px);
+  margin: 10px;
+  position: relative;
+  margin-bottom: 180px;
+
+}
+
+.service img {
+  width: 100%;
+  height: auto;
+  transition: filter 0.3s ease;
+  border-radius: 25%;
+}
+
+
+.services .service:hover {
+  opacity: 1;
+}
+
+.services .service h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.services .service p {
+  font-size: 20px;
+  margin: 0;
+}
+
+.services .service:hover img {
+  filter: brightness(50%);
+}
+
+.services .service:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.environment .slideS {
+  position: relative;
+}
+
+.environment .slideS p {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.reviews .stars-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: #f7f7f7;
+}
+
+/* pricing */
+
+.pricing{
+  background: url("https://images.pexels.com/photos/4194857/pexels-photo-4194857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-attachment: fixed;
+  margin-top: 150px;
+  margin-bottom: 180px;
+}
+
+.pricing .box-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pricing .box-container .box{
+  height: 500px;
+  width: 300px;
+  margin: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0,0,0,.9);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: var(--primary-color);
+}
+
+.pricing .box-container .box::before,
+.pricing .box-container .box:after{
+  content: '';
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  opacity: .5;
+}
+
+.pricing .box-container .box::before{
+  background: var(--light-bg);
+  top: -10%; left: 80%;
+}
+
+.pricing .box-container .box::after{
+  background: var(--main-color);
+  bottom: -10%; right: 80%;
+}
+
+.pricing .box-container .box .title{
+  margin: 30px 0;
+  font-size: 26px;
+  color: var(--main-color);
+  text-transform: capitalize;
+}
+
+.pricing .box-container .box .price{
+  height: 160px;
+  width: 160px;
+  color: var(--white);
+  background: var(--main-color);
+  padding: 57px 0 0;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+}
+
+.pricing .box-container .box .price .currency{
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 300;
+}
+
+.pricing .box-container .box .price .amount{
+  font-size: 50px;
+  line-height: 45px;
+  font-weight: 700;
+}
+
+.pricing .box-container .box ul li{
+  text-align: left;
+  font-size: 16px;
+  padding-left: 45px;
+  margin: 20px auto;
+  color: var(--white);
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.pricing .box-container .box ul li i{
+  color: var(--main-color);
+  padding: 0 5px;
+}
+
+.pricing .box-container .box button{
+  height: 40px;
+  width: 140px;
+  outline: none;
+  border-radius: 50px;
+  text-transform: capitalize;
+  cursor: pointer;
+  background: none;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+  font-size: 17px;
+  font-weight: bold;
+  transition: .2s linear;
+}
+
+.pricing .box-container .box button:hover{
+  color: var(--white);
+  background: var(--main-color);
+}
+
+/* pricing */
+
+/* Add your PixiJS integration code below this point */
+
+
+@keyframes starAnimation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* footer */
 .footer {
     background: var(--main-color);

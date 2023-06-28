@@ -45,5 +45,33 @@ thumbnails.forEach((thumbnail) => {
   });
 });
 
+// Slider Initialization
+const slider = document.querySelector('.sliderS');
+const slides = slider.querySelectorAll('.slideS');
+let currentSlide = 0;
+const slideWidth = slides[0].offsetWidth;
+
+function slideToNext() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  slider.scroll({
+    left: currentSlide * slideWidth,
+    behavior: 'smooth'
+  });
+}
+
+setInterval(slideToNext, 3000); // Automatically slide to the next slide every 3 seconds
+
+// Stars Animation Initialization
+const starsAnimation = document.querySelector('.stars-animation');
+const numberOfStars = 10;
+
+for (let i = 0; i < numberOfStars; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.left = `${i * (100 / numberOfStars)}%`;
+  starsAnimation.appendChild(star);
+}
+
+
   
   
