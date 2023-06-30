@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skin Care and Spa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+
 </head>
 <body>
      <!-- header -->
@@ -23,13 +27,13 @@
            <div class="dropdown-menu">
              <a href="aboutUs.html">About us</a>
 
-             <a href="#services">Services</a>
+             <a href="Services.html">Services</a>
            </div>
          </div>
-         <a href="#products">Our Products</a>
-         <a href="#consulation">Consultation</a>
-         <a href="#account">Account</a>
-         <a href="#review">Review</a>
+         <a href="products.html">Our Products</a>
+         <a href="consultation.html">Consultation</a>
+         <a href="account.html">Account</a>
+         <a href="reviews.html">Review</a>
        </nav>
      
         <div id="menu-btn" class="fas fa-bars"></div>
@@ -75,7 +79,233 @@
         <li><img src="https://cdn.shopify.com/s/files/1/0055/9238/3558/files/brand-info-logo_made-in-ca_140x140.png?v=1618223928" alt="Made in California"></li>
         <li><img src="https://cdn.shopify.com/s/files/1/0055/9238/3558/files/brand-info-logo_small-batch_140x140.png?v=1618223944" alt="Small Batch Manufacture"></li>
     </ul>
+
+    <section class="section3">
+      <div class="container">
+          <h2 style=" text-align: center;margin-bottom: 40px;font-size: 28px;">When a passion for great Skin and Mother Nature collide</h2>
+          <div class="solution">
+              <div class="solution-item">
+                  <img src="https://www.gaelleorganic.com/cdn/shop/files/Product_Info_Icon_-_Pore_70x70.png?v=1618224216" alt="Solution 1 Logo">
+                  <h3>Solutions for every skin type</h3>
+<p>At our spa and skincare center, we offer comprehensive solutions for every skin type. Whether you have oily, combination, dry, or normal skin, we understand that each skin type requires specific care and attention. Our team of experts has developed a range of high-quality products tailored to meet the unique needs of your skin.</p>
+
+
+              </div>
+              <div class="solution-item">
+                  <img src="https://www.gaelleorganic.com/cdn/shop/files/Product_Info_Icon_-_Breakouts_70x70.png?v=1618224231" alt="Solution 2 Logo">
+                  <h3>Wrinkles, fine lines, dark spots be gone</h3>
+                  <p>Our products are designed to fight the effects of aging. They target fine lines, wrinkles and dark spots. They nourish the skin and replenish its moisture barrier with rich organic oils, creating smooth skin with a vibrant, youthful glow.</p>
+              </div>
+              <div class="solution-item">
+                  <img src="https://www.gaelleorganic.com/cdn/shop/files/Product_Info_Icon_-_Leaf_70x70.png?v=1618224247" alt="Solution 3 Logo">
+                  <h3>Powerhouse Ingredients</h3>
+                  <p>Our chemists and green formulators have a deep knowledge of 2000+ botanicals. They develop an ingredient shortlist for every product based on bioavailability, antioxidant and nutrient profiles, and clinical proof of efficacy. We then create an Eco-certified organic and natural collection, sourced from the most potent botanical varieties on earth.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+
+    <script type="text/javascript">
+
+      // Set up the variables needed and create the PIXI application
+      var app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0xffffff // Set the background color to white (hex value: 0xffffff)
+      });
+      document.body.appendChild(app.view);
+    
+      app.stage.interactive = true;
+      var posX, displacementSprite, displacementFilter, bg, vx;
+      var container = new PIXI.Container();
+      app.stage.addChild(container);
+    
+      // Create a loader instance
+      var loader = new PIXI.Loader();
+    
+      // Add assets to be loaded
+      loader.add("ripple", "ripple.png");
+      loader.add("bg", "bg.jpg");
+    
+      // Register a callback when all assets are loaded
+      loader.load(setup);
+    
+      // In the 'setup' function, access the loaded assets using the provided resources object
+      function setup(loader, resources) {
+        posX = app.renderer.width / 2;
+        displacementSprite = new PIXI.Sprite(resources.ripple.texture);
+        displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.x = app.renderer.width / 2;
+        displacementSprite.y = app.renderer.height / 2;
+        vx = displacementSprite.x;
+    
+        app.stage.addChild(displacementSprite);
+        container.filters = [displacementFilter];
+        displacementFilter.scale.x = 0;
+        displacementFilter.scale.y = 0;
+        bg = new PIXI.Sprite(resources.bg.texture);
+        bg.width = 800; // Set the width of the background image to 800 pixels
+        bg.height = 600; // Set the height of the background image to 600 pixels
+        container.addChild(bg);
+    
+        // Create text
+        var text = new PIXI.Text("Your Text Here", {
+          fontSize: 24,
+          fill: 0x000000, // Black color (hex value: 0x000000)
+          fontWeight: 'bold',
+          fontFamily: 'Arial'
+        });
+        text.anchor.set(0.5);
+        text.x = app.renderer.width / 2;
+        text.y = app.renderer.height / 2 + bg.height / 2 + 20; // Position below the photo with an additional 20 pixels offset
+        text.style.borderRadius = "20%"; // Apply border radius of 20%
+        text.style.padding = "10px"; // Add some padding to the text
+        text.style.backgroundColor = "#ffffff"; // Set background color for the text
+        container.addChild(text);
+    
+        app.stage.on('pointermove', onPointerMove);
+        loop();
+      }
+    
+      function onPointerMove(eventData) {
+        posX = eventData.data.global.x;
+      }
+    
+      function loop() {
+        requestAnimationFrame(loop);
+        vx += (posX - displacementSprite.x) * 0.045;
+        displacementSprite.x = vx;
+        var disp = Math.floor(posX - displacementSprite.x);
+        if (disp < 0) disp = -disp;
+        var fs = map(disp, 0, 500, 0, 120);
+        disp = map(disp, 0, 500, 0.1, 0.6);
+        displacementSprite.scale.x = disp;
+        displacementFilter.scale.x = fs;
+      }
+    
+      function map(n, start1, stop1, start2, stop2) {
+        var newval = (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+        return newval;
+      }
+    
+      // Greensock to reveal elements
+
+        TweenMax.from(".brand", 2, {
+            y: 20,
+            opacity: 0,
+            ease: Expo.easeInOut
+        });
+
+        TweenMax.from(".search", 2, {
+             delay: 0.1,
+            y: 20,
+            opacity: 0,
+            ease: Expo.easeInOut
+        });
+
+        TweenMax.from(".menu", 2, {
+             delay: 0.2,
+            y: 20,
+            opacity: 0,
+            ease: Expo.easeInOut
+        });
+
+        TweenMax.from(".header h1", 2, {
+             delay: 1,
+            y: 20,
+            opacity: 0,
+            ease: Expo.easeInOut
+        });
+
+
+        TweenMax.staggerFrom(".media ul li", 2, {
+            delay: .4,
+            opacity: 0,
+            x: 40,
+            ease: Expo.easeInOut
+      }, 0.2);
+
+      TweenMax.from(".bottomnav", 3, {
+           delay: 2,
+          y: 50,
+          ease: Expo.easeInOut
+      });
+
+      TweenMax.from(".counter", 2, {
+          delay: 3,
+          y: 40,
+          opacity: 0,
+          ease: Expo.easeInOut
+     });
+
+     TweenMax.from(".bar", 2, {
+         delay: 3.6,
+         width: "0%",
+         ease: Expo.easeInOut
+    });
+
+
+      TweenMax.staggerFrom(".bottomnav ul li", 2, {
+          delay: 3.2,
+          opacity: 0,
+          y: 40,
+          ease: Expo.easeInOut
+    }, 0.2);
+
+
+         TweenMax.from(".share", 2, {
+             delay: 1.4,
+             opacity: 0,
+            y: 40,
+            ease: Expo.easeInOut
+        });
+
+
+
+
+
+
+    </script>
+<section class="reviews">
+  <h3 style=" text-align: center; margin-bottom: 20px;font-size: 28px;">Customer Reviews</h3>
+  <div class="review">
+    <div class="review-author">
+      <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Review Author">
+      <p>Endi Haziri</p>
+    </div>
+    <p class="review-text">I've been using these skincare products for a few months now, and I can't recommend them enough! My skin has never looked better, and the fine lines and dark spots have visibly reduced. Thank you for creating such amazing products!</p>
+    <div class="review-stars">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+    </div>
+  </div>
+  <div class="review">
+    <div class="review-author">
+      <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Review Author">
+      <p>Bardha Çoçaj</p>
+    </div>
+    <p class="review-text">As someone with oily skin, I've struggled to find products that effectively control the shine without drying out my skin. These skincare products have been a game-changer for me! They keep my skin balanced, moisturized, and give me a healthy glow.</p>
+    <div class="review-stars">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+    </div>
+  </div>
+  <a class="watch-more-button" href="reviews.html">Watch More</a>
+</section>
+
+
      <!-- footer -->
+
+    
+
 
 <section class="footer">
 
@@ -114,9 +344,9 @@
 
 
 
+ <script src="js/script.js"></script>
 
 <!-- footer end-->
-<script src="js/script.js"></script>
     </body>
     </html>
     
